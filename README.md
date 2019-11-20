@@ -1,0 +1,2 @@
+# BA-YMS8330-BLOGPROJESI
+blog projesi

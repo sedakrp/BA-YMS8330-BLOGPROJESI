@@ -1,5 +1,6 @@
 ﻿
 
+using Blog.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Data.Context
@@ -9,6 +10,7 @@ namespace Blog.Data.Context
         public BlogContext (DbContextOptions<BlogContext> options) : base(options)
         { }
 
-
+        public DbSet<User> Users { get; set; }
+        public DbSet<Blog.Data.Models.Blog> Blogs { get; set; }
     }
 }

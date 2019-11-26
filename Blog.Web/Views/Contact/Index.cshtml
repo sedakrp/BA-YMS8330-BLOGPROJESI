@@ -1,14 +1,22 @@
 ﻿@{
     Layout = "_Layout";
 }
-<form>
-    <input type="text" id="Name" placeholder="Adınız" />
-    <br />
-    <input type="text" id="Surname" placeholder="Soyadınız" />
-    <br />
-    <textarea id="Message" placeholder="Mesajınız..."></textarea>
-    <br />
-    <input type="button" value="Gonder" onclick="Page.Contact.Send();"/>
+<div id="Contact-Index-Form">
+    <form>
+        <input type="text" id="Name" placeholder="Adınız" />
+        <br />
+        <input type="text" id="Surname" placeholder="Soyadınız" />
+        <br />
+        <textarea id="Message" placeholder="Mesajınız..."></textarea>
+        <br />
+        <input type="button" value="Gonder" onclick="Page.Contact.Send();" />
 
-</form>
+    </form>
+</div>
 
+<div id="Contact-Index-Sending" style="display:none;">
+    <h3>İletiniz gönderiliyor...</h3>
+</div>
+<div id="Contact-Index-Sent"style="display:none;">
+    <h3>İletiniz gönderildi.. </h3>
+</div>

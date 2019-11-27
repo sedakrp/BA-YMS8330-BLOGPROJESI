@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+@using Microsoft.AspNetCore.Http
+    <!DOCTYPE html>
 <html>
 <head>
     <title>bu sitenin başlığıdır..</title>
@@ -12,11 +14,25 @@
 <body>
 <div class="container">
     <div class="row">
-     <div class="col-4"> 
-        <div><a href="@Url.Action("Index","Home")">Anasayfa</a></div>
-        <div><a href="@Url.Action("Index","AboutUs")">Hakımızda</a></div>
-        <div><a href="@Url.Action("Index","Contact")">İletisim</a></div>
-    </div>
+        <div class="col-4">
+            <div><a href="@Url.Action("Index","Home")">Anasayfa</a></div>
+            <div><a href="@Url.Action("Index","AboutUs")">Hakımızda</a></div>
+            <div><a href="@Url.Action("Index","Contact")">İletisim</a></div>
+            
+            @{ 
+                int? userId = Context.Session.GetInt32("UserId");
+                if (userId != null && userId !=0)
+                {
+                    <div><a href="@Url.Action("Login","User")">Cıkıs yap</a></div>
+                }
+                else
+                {
+                    <div><a href="@Url.Action("Login","User")">Kullanıcı Girişi</a></div>
+                }
+
+            }
+
+        </div>
         <div class="col-8">@RenderBody()</div>
     </div>
 

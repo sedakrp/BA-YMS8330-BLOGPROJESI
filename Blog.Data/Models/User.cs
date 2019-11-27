@@ -39,8 +39,4 @@ namespace Blog.Data.Models
 
 
     }
-
-    internal class RequiredAttribute : Attribute
-    {
-    }
 }

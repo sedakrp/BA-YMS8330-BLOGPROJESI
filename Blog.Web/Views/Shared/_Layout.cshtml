@@ -18,12 +18,13 @@
             <div><a href="@Url.Action("Index","Home")">Anasayfa</a></div>
             <div><a href="@Url.Action("Index","AboutUs")">Hakımızda</a></div>
             <div><a href="@Url.Action("Index","Contact")">İletisim</a></div>
-            
-            @{ 
+
+            @{
                 int? userId = Context.Session.GetInt32("UserId");
-                if (userId != null && userId !=0)
+                if (userId != null && userId != 0)
                 {
-                    <div><a href="@Url.Action("Login","User")">Cıkıs yap</a></div>
+                    <div><a href="@Url.Action("New","Blog")">Yeni Yazı</a></div>
+                    <div><a href="@Url.Action("LogoutAction","User")">Cıkış</a></div>
                 }
                 else
                 {

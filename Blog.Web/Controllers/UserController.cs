@@ -34,7 +34,7 @@ namespace Blog.Web.Controllers
             User user = _blogContext.Users.SingleOrDefault(a => !a.Deleted && a.Password == userLogin.Password);
             if (user !=null)
             {
-                HttpContext.Session.SetInt32("Userid", user.Id);
+                HttpContext.Session.SetInt32("UserId", user.Id);
 
 
                 return Ok(user);
@@ -44,6 +44,14 @@ namespace Blog.Web.Controllers
                 return Unauthorized();
             }
 
+        }
+
+        [HttpGet]//cıkıs yapma
+        public IActionResult LogoutAction()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Index", "Home");
         }
 
        

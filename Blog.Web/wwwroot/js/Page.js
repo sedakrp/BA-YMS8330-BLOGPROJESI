@@ -98,10 +98,12 @@
             {
                 var title = $("#Title").val();
                 var content = $("#Content").val();
+                var categoryId = parseInt($("#Category").val());
 
                 var data = {
                     Title: title,
-                    Content: content
+                    Content: content,
+                    CategoryId:categoryId
 
                 };
                 $.ajax({

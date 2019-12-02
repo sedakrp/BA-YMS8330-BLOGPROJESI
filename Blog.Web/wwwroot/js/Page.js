@@ -1,4 +1,16 @@
 ﻿var Page = {
+    Init: function(){
+        $.ajax({
+            type: "GET",
+            url: "/Module/Categories",
+            data: [],
+            success: function (result) {
+                $("#Module-Categories").html(result)
+            },           
+            dataType: "html"
+        });
+
+    },
     Contact: {
         Send: function () {
 
@@ -122,7 +134,8 @@
 
             },
             Save_Callback: function (result) {
-                console.log(result);
+                window.location.href = "/blog/detail/" + result.id;
+                
             },
             Save_Callback_Error: function (request, status, error) {
                 console.log(request);

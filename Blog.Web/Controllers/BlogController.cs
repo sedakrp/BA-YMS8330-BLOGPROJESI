@@ -41,7 +41,7 @@ namespace Blog.Web.Controllers
 
             _blogContext.Blogs.Add(blog);
             _blogContext.SaveChanges();
-            return Ok();
+            return Ok(blog);
         }
         public IActionResult Detail(int id)//blogun ıdsi olacak
         {

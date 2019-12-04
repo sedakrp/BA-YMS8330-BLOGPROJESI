@@ -144,6 +144,65 @@
             }
         }
 
+    },
+    Manage: {
+        Login: {
+            Submit: function () {
+                var email = $("#Email").val();
+                var password = $("#Password").val();
+                var data = {
+                    Email: email,
+                    Password: password
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/Manage/LoginAction",
+                    data: JSON.stringify(data),
+                    success: Page.Manage.Login.Submit_Callback,
+                    error: Page.Manage.Login.Submit_Callback_Error,
+                    dataType: "json",
+                    contentType: "application/json"
+
+                });
+            },
+            Submit_Callback: function (result) {
+                window.location.href = "/Manage/Index";
+
+            },
+            Submit_Callback_Error: function (result) {
+                console.log(result);
+
+            },
+        },
+        NewBlog: {
+            Save: function () {
+
+                var title = $("#Title").val();
+                var content = $("#Content").val();
+                var data = {
+                    Title: title,
+                    Content: content,
+                    CategoryId: categoryId
+
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Manage/NewBlogAction",
+                    data: JSON.stringify(data),
+                    success: Page.Manage.NewBlog.Save_Callback,
+                    error: Page.Manage.NewBlog.Save_Callback_Error,
+                    dataType: "json",
+                    contentType="application/json"
+                });
+            },
+            Save_Callback: function (result) {
+
+            },
+            Save_Callback_Error: function (result) {
+
+            }
+        }
     }
 
 }

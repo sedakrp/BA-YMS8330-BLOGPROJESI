@@ -1,5 +1,5 @@
-﻿@model Blog.Data.Models.Blog
-
+﻿@using Microsoft.AspNetCore.Http
+@model Blog.Data.Models.Blog
 @{
     Layout = "_Layout";
 }
@@ -7,5 +7,13 @@
     <h1>@Model.Title</h1>
     <div>@Model.Content</div>
     <div>@Model.CreateDate</div>
+    @{
+        if (Context.Session.GetInt32("useId" )!= null)
+        {
+            <div><a href="@Url.Action("ManageBlog","Manage",new { id=Model.Id})">Düzenle</a></div>
+
+        }
+    }
+
 </div>
 

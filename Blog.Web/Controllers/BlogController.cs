@@ -5,6 +5,7 @@ using Blog.Data.Context;
 using Blog.Data.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Web.Controllers
 {
@@ -45,8 +46,29 @@ namespace Blog.Web.Controllers
         }
         public IActionResult Detail(int id)//blogun ıdsi olacak
         {
-            var blog = _blogContext.Blogs.Find(id);
+            Data.Models.Blog blog = _blogContext.Blogs
+                .Include(a =>a.User)
+                .Include(a=>a.Comments)
+                .SingleOrDefault(a=> a.Id== id);
             return View(blog);
+        }
+        public IActionResult AddComment([FromBody]BlogAddCommentDto blogAddComment)
+        {
+            Data.Models.Comment blog = new Data.Models.Comment()
+            {
+                BlogId =blogAddComment.BlogId,
+                CreateDate = DateTime.UtcNow,
+                Content = blogAddComment.Comment,
+                Deleted = false,
+                Email = blogAddComment.Email,
+                Nickname = blogAddComment.Nickname,
+                ParentCommentId =blogAddComment.ParetnCommentId,
+                Voteup = 0,
+                VoteDown = 0
+            };
+            _blogContext.Comments.Add(blog);
+            _blogContext.SaveChanges();
+            return new JsonResult("ok");
         }
     }
 }

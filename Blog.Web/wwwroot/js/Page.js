@@ -91,6 +91,51 @@
                 console.log(status);
                 console.log(error);
             }
+        },
+        Detail: {
+            Comment: {
+                Post: function () {
+                    var nickname = $("#Nickname").val();
+                    var email = $("#Email").val();
+                    var comment = $("#Comment").val();
+                    var blogId = $("#BlogId").val();
+                    if (blogId == "0") {
+                        blogId = null;
+                    }
+                    var parentCommentId = $("#ParentCommentId").val();
+
+                    $("#Comment-Respond").hide();
+                    $("#Comment-Sending").show();
+
+                    var data = {
+                        Nickname: nickname,
+                        Email: email,
+                        Comment: comment,
+                        BlogId: blogId,
+                        ParentCommenId:parentCommentId
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "/Blog/AddComment",
+                        data: JSON.stringify(data),
+                        success: Page.Blog.Detail.Comment.Post_Callback,
+                        error: Page.Blog.Detail.Comment.Post_Callback_Error,
+                        dataType: "json",
+                        contentType: "application/json"
+                    });
+                },
+                Post_Callback: function (result) {
+                    $("#Comment-Sending").hide();
+                    $("#Comment-Sent").show();
+
+
+                },
+                Post_Callback_Error: function (result) {
+                    alert("Bir hata oluştu!!");
+                    $("#Comment-Sending").hide();
+                    $("#Comment-Respond").show();
+                }
+            }
         }
     },
     Manage: {
@@ -146,7 +191,7 @@
                 var data = {
                     Title: title,
                     Content: content,
-                    CategoryId: categoryId
+                    CategoryId: categoryId,
                     Id:id
                 };
 

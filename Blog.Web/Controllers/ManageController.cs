@@ -12,8 +12,8 @@ namespace Blog.Web.Controllers
 {
     public class ManageController : Controller
     {
-        private readonly BlogContext _blogContext;
-        public ManageController(BlogContext blogContext)
+        private readonly blogContext _blogContext;
+        public ManageController(blogContext blogContext)
         {
             _blogContext = blogContext;
 

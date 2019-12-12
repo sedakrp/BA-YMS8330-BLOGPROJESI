@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Blog.Data.Context;
+using Blog.Data.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -35,7 +36,7 @@ namespace Blog.Web
                 options.Cookie.IsEssential = true;
             });
 
-            services.AddDbContext<BlogContext>(options => options.UseSqlServer("Server=localhost;Database=YMS8330;User Id=sa;Password = 123; "));
+            services.AddDbContext<blogContext>(options => options.UseSqlServer("Server=localhost;Database=YMS8330;User Id=sa;Password = 123; "));
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -48,8 +49,10 @@ namespace Blog.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,IServiceProvider serviceProvider)
         {
+            blogContext blogContext = serviceProvider.GetService<blogContext>();
+            Program.Site = blogContext.Sites.Single();
             app.UseSession();
             if (env.IsDevelopment())
             {

@@ -11,9 +11,9 @@ namespace Blog.Web.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly BlogContext _blogContext;
+        private readonly blogContext _blogContext;
         
-        public ContactController(BlogContext blogContext)
+        public ContactController(blogContext blogContext)
         {
             _blogContext = blogContext;
         

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.Data.Migrations
 {
-    [DbContext(typeof(BlogContext))]
+    [DbContext(typeof(blogContext))]
     [Migration("20191211171125_Comment_2")]
     partial class Comment_2
     {

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Blog.Web
+<!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
@@ -10,7 +11,7 @@
     <!-- Basic Page Needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>Responsive</title>
+    <title> @Program.Site.Title@ViewData["Title"]</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Mobile Specific Metas
@@ -49,14 +50,14 @@
                 <li class="profile"><a href="index.html"><span><span>Profile</span></span></a></li>
                 <li class="resume"><a href="resume.html"><span><span>Resume</span></span></a></li>
                 <li class="portfolio"><a href="portfolio.html"><span><span>Portfolio</span></span></a></li>
-                <li class="blog current-menu-item"><a href="blog.html"><span><span>Blog</span></span></a></li>
+                <li class="blog current-menu-item"><a href="@Url.Action("Index","Home")"><span><span>Blog</span></span></a></li>
                 <li class="contact"><a href="contact.html"><span><span>Contact</span></span></a></li>
             </ul>
         </nav>
         <div class="content">
             <div class="info">
                 <div class="head">
-                    <img src="/theme/images/profile-image.jpg" alt="" />
+                    <img src="/theme/images/profile-image.jpg" alt=""/>
                     <div class="name">
                         <p class="first">Johnatan</p>
                         <p class="last">Doe</p>
@@ -88,7 +89,7 @@
             </div><!-- /innerContainer -->
         </div><!-- /content -->
         <footer>
-            <span>Copyright &copy;2012 Johnaton Does.</span>
+            <span>@Program.Site.Copyright</span>
         </footer>
     </div><!-- /wrapper -->
     <!-- End Document

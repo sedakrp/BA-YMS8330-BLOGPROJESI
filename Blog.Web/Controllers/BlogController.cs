@@ -11,8 +11,8 @@ namespace Blog.Web.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly BlogContext _blogContext;
-        public BlogController(BlogContext blogContext)
+        private readonly blogContext _blogContext;
+        public BlogController(blogContext blogContext)
         {
             _blogContext = blogContext;
         }
@@ -50,6 +50,7 @@ namespace Blog.Web.Controllers
                 .Include(a =>a.User)
                 .Include(a=>a.Comments)
                 .SingleOrDefault(a=> a.Id== id);
+            ViewData["Title"] = blog.Title;
             return View(blog);
         }
         public IActionResult AddComment([FromBody]BlogAddCommentDto blogAddComment)

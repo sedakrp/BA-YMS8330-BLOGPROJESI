@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog.Data.Migrations
 {
-    [DbContext(typeof(BlogContext))]
+    [DbContext(typeof(blogContext))]
     partial class BlogContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -75,8 +75,8 @@ namespace Blog.Data.Migrations
                     b.ToTable("Categories");
 
                     b.HasData(
-                        new { Id = 1, CreateDate = new DateTime(2019, 12, 11, 18, 16, 23, 607, DateTimeKind.Utc), Deleted = false, Description = "....", Name = "Aşk" },
-                        new { Id = 2, CreateDate = new DateTime(2019, 12, 11, 18, 16, 23, 609, DateTimeKind.Utc), Deleted = false, Description = "!!!!", Name = "Meşk" }
+                        new { Id = 1, CreateDate = new DateTime(2019, 12, 12, 18, 5, 36, 304, DateTimeKind.Utc), Deleted = false, Description = "....", Name = "Aşk" },
+                        new { Id = 2, CreateDate = new DateTime(2019, 12, 12, 18, 5, 36, 306, DateTimeKind.Utc), Deleted = false, Description = "!!!!", Name = "Meşk" }
                     );
                 });
 
@@ -159,7 +159,7 @@ namespace Blog.Data.Migrations
                     b.ToTable("Nationality");
 
                     b.HasData(
-                        new { Id = 1, Code = "tr", CreateDate = new DateTime(2019, 12, 11, 18, 16, 23, 609, DateTimeKind.Utc), Deleted = false, Name = "Türkiye" }
+                        new { Id = 1, Code = "tr", CreateDate = new DateTime(2019, 12, 12, 18, 5, 36, 306, DateTimeKind.Utc), Deleted = false, Name = "Türkiye" }
                     );
                 });
 
@@ -185,6 +185,29 @@ namespace Blog.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pages");
+                });
+
+            modelBuilder.Entity("Blog.Data.Models.Site", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Copyright");
+
+                    b.Property<string>("Desctription");
+
+                    b.Property<string>("Slogan");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sites");
+
+                    b.HasData(
+                        new { Id = 1, Copyright = "içerik hırsızlığına hayıııırrrr...", Desctription = ".......", Slogan = "Sayfama Hoşgeldiniz...", Title = "Seda Körpe" }
+                    );
                 });
 
             modelBuilder.Entity("Blog.Data.Models.User", b =>
@@ -230,7 +253,7 @@ namespace Blog.Data.Migrations
                     b.ToTable("Users");
 
                     b.HasData(
-                        new { Id = 1, BirthDate = new DateTime(1990, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), CreateDate = new DateTime(2019, 12, 11, 18, 16, 23, 609, DateTimeKind.Utc), Deleted = false, Email = "sedakrpe@gmail.com", Gender = 1, Name = "Seda", NationalityId = 1, Password = "11223344", Surname = "Korpe", Username = "seda" }
+                        new { Id = 1, BirthDate = new DateTime(1990, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), CreateDate = new DateTime(2019, 12, 12, 18, 5, 36, 306, DateTimeKind.Utc), Deleted = false, Email = "sedakrpe@gmail.com", Gender = 1, Name = "Seda", NationalityId = 1, Password = "11223344", Surname = "Korpe", Username = "seda" }
                     );
                 });
 

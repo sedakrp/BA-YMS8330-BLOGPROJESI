@@ -14,8 +14,8 @@ namespace Blog.Web.Controllers
 
     {
 
-        private readonly BlogContext _blogContext;
-        public UserController(BlogContext blogContext)
+        private readonly blogContext _blogContext;
+        public UserController(blogContext blogContext)
         {
             _blogContext = blogContext;
         }

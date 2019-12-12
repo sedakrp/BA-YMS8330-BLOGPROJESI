@@ -6,68 +6,57 @@
 <div class="main">
     <article>
         <header><h1>@Model.Title</h1></header>
-        <div class="meta">@Model.CreateDate.ToString("M"),&nbsp;<span>ThemeBakers</span>@Model.User.Name  @Model.User.Surname&nbsp;<a href="#comments">4 Comments</a></div>
+        <div class="meta">@Model.CreateDate.ToString("M"),&nbsp;<span>ThemeBakers</span>@Model.User.Name  @Model.User.Surname&nbsp;<a href="#comments">@Model.Comments.Count yorum</a></div>
         <div class="entry">
             @Html.Raw(Model.Content)
         </div>
     </article>
     <div id="comments" class="comments">
-        <h6>This article has 3 comments</h6>
+        <h6>Bu yazı @Model.Comments.Count adet yorum yapılmıştır..</h6>
         <ol class="commentsList">
+            @{ 
+                foreach (var comment in Model.Comments.Where(a =>a.ParentCommentId==0))
+                {
             <li class="comment">
                 <div class="commentBody">
                     <div class="commentDetails">
                         <div class="commentMeta">
-                            <div class="commentMetaTop clearfix"><img src="images/gravatar.png" alt="" /><span class="name">Terry</span><br /><span class="date">24 April 2012</span></div>
-                            <div class="commentContent">
-                                <p>Sed sed leo sit amet elit sagittis fermentum. Nulla posuere commodo erat. Nam ac nunc ipsum, id espara tincidunt orci. Quisque adipiscing molestie dolor, ut congue.Sed sed leo sit amet elit sagittis fermentum. Nulla posuere commodo erat. Nam ac nunc ipsum, id espara tincidunt orci. Quisque adipiscing molestie dolor.</p>
+                            <div class="commentMetaTop clearfix">
+                                <img src="~/theme/images/gravatar.png" />
+                                <span class="name">@comment.Nickname</span>
+                                <br />
+                                <span class="date">@comment.CreateDate.ToString("M")</span>
                             </div>
-                            <div class="reply"><a href="#" class="comment-reply-link">Reply</a></div>
+                            <div class="commentContent">
+                                <p>@comment.Content</p>
+                            </div>
+                            <div class="reply" onclick="Page.Blog.Detail.Comment.Reply(@comment.Id)"><a href="javascript:void(0);" class="comment-reply-link">Cevap</a></div>
                         </div>
                     </div>
                 </div>
-                <ul class="children">
-                    <li class="comment">
-                        <div class="commentBody">
-                            <div class="commentDetails">
-                                <div class="commentMeta">
-                                    <div class="commentMetaTop clearfix"><img src="images/gravatar.png" alt="" /><span class="name">ThemeBakers</span><br /><span class="date">24 April 2012</span></div>
-                                    <div class="commentContent">
-                                        <p>Sed sed leo sit amet elit sagittis fermentum. Nulla posuere commodo erat. Nam ac nunc ipsum, id espara tincidunt orci. Quisque adipiscing molestie dolor, ut congue.Sed sed leo sit amet elit sagittis fermentum. Nulla posuere commodo erat. Nam ac nunc ipsum, id espara tincidunt orci. Quisque adipiscing molestie dolor.</p>
+                @{
+                    var childComments = Model.Comments.Where(a => a.ParentCommentId == comment.Id);
+                    foreach (var childComment in childComments)
+                    {
+                        <ul class="children">
+                            <li class="comment">
+                                <div class="commentBody">
+                                    <div class="commentDetails">
+                                        <div class="commentMeta">
+                                            <div class="commentMetaTop clearfix"><img src="/theme/images/gravatar.png" alt="" /><span class="name">@childComment.Nickname</span><br /><span class="date">@childComment.CreateDate.ToString("M")</span></div>
+                                            <div class="commentContent">
+                                                <p>@childComment.Content</p>
+                                            </div>                                           
+                                        </div>
                                     </div>
-                                    <div class="reply"><a href="#" class="comment-reply-link">Reply</a></div>
                                 </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                            </li>
+                        </ul>
+                    }
+                }
             </li>
-            <li class="comment">
-                <div class="commentBody">
-                    <div class="commentDetails">
-                        <div class="commentMeta">
-                            <div class="commentMetaTop clearfix"><img src="images/gravatar.png" alt="" /><span class="name">Cook</span><br /><span class="date">24 April 2012</span></div>
-                            <div class="commentContent">
-                                <p>Sed sed leo sit amet elit sagittis fermentum. Nulla posuere commodo erat. Nam ac nunc ipsum, id espara tincidunt orci. Quisque adipiscing molestie dolor, ut congue.Sed sed leo sit amet elit sagittis fermentum. Nulla posuere commodo erat. Nam ac nunc ipsum, id espara tincidunt orci. Quisque adipiscing molestie dolor.</p>
-                            </div>
-                            <div class="reply"><a href="#" class="comment-reply-link">Reply</a></div>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="comment">
-                <div class="commentBody">
-                    <div class="commentDetails">
-                        <div class="commentMeta">
-                            <div class="commentMetaTop clearfix"><img src="images/gravatar.png" alt="" /><span class="name">Phil</span><br /><span class="date">24 April 2012</span></div>
-                            <div class="commentContent">
-                                <p>Sed sed leo sit amet elit sagittis fermentum. Nulla posuere commodo erat. Nam ac nunc ipsum, id espara tincidunt orci. Quisque adipiscing molestie dolor, ut congue.Sed sed leo sit amet elit sagittis fermentum. Nulla posuere commodo erat. Nam ac nunc ipsum, id espara tincidunt orci. Quisque adipiscing molestie dolor.</p>
-                            </div>
-                            <div class="reply"><a href="#" class="comment-reply-link">Reply</a></div>
-                        </div>
-                    </div>
-                </div>
-            </li>
+                }
+            }  
         </ol>
         <div id="Comment-Respond">
             <br>

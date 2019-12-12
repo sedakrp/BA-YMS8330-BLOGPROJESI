@@ -10,8 +10,8 @@ namespace Blog.Web.Controllers
 {
     public class ModuleController : Controller
     {
-        private readonly BlogContext _blogContext;
-        public ModuleController(BlogContext blogContext)
+        private readonly blogContext _blogContext;
+        public ModuleController(blogContext blogContext)
         {
             _blogContext = blogContext;
 

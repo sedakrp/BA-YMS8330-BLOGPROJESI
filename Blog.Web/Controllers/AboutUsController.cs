@@ -11,9 +11,9 @@ namespace Blog.Web.Controllers
 {
     public class AboutUsController : Controller
     {
-        public readonly BlogContext _blogContext;
+        public readonly blogContext _blogContext;
 
-        public AboutUsController(BlogContext blogContext)
+        public AboutUsController(blogContext blogContext)
         {
             _blogContext = blogContext;
         }

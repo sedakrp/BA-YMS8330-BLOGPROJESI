@@ -10,8 +10,8 @@ namespace Blog.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private BlogContext _blogContext;
-        public HomeController(BlogContext blogContext)
+        private blogContext _blogContext;
+        public HomeController(blogContext blogContext)
         {
             _blogContext = blogContext;    
         }

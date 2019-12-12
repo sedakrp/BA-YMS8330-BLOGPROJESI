@@ -127,6 +127,7 @@
                 Post_Callback: function (result) {
                     $("#Comment-Sending").hide();
                     $("#Comment-Sent").show();
+                    window.location.reload();
 
 
                 },
@@ -134,6 +135,11 @@
                     alert("Bir hata oluştu!!");
                     $("#Comment-Sending").hide();
                     $("#Comment-Respond").show();
+                },
+                Reply: function (commentId) {
+                    $("#ParntConmentId").val(commentId);
+                    window.location.href = "#Comment-Respond";
+
                 }
             }
         }

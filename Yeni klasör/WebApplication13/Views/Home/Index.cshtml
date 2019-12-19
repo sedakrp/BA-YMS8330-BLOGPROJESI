@@ -1,0 +1,52 @@
+﻿<!doctype html>
+<html>
+<head>  
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+    <script>
+        var Page = {
+            Send: function () {
+
+                var txt = $("#Txt").val();
+
+                var data = {
+                    Txt: txt
+                }
+
+                var json = JSON.stringify(data);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Ornek",
+                    data: json,
+                    success: Page.Send_Callback,
+                    dataType: "text",
+                    contentType: "application/json; charset=utf-8"
+                });
+               
+               
+            },
+
+
+            Send_Callback: function (result) {
+                $("#Yaz").html(result);
+           
+            }
+  
+
+        }
+
+    </script>
+</head>
+<body>
+<div>
+    <input type="text" id="Txt" />
+    <input type="button" value="Gonder"  onclick="Page.Send();" />
+    <div id="Yaz"></div>
+ 
+</div>
+    
+</body>
+</html>
